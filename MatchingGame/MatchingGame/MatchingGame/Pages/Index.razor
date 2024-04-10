@@ -1,9 +1,65 @@
 ﻿@page "/"
 
 <PageTitle>Index</PageTitle>
+<style>
+    .container{
+        width:480px;
+    }
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+    button{
+        width:100px;
+        height:100px;
+        font-size:50px;
+    }
+    </style>
+<div class="container">
+    <div class="row">
+        @foreach(var animal in shuffledAnimals)
+{
+                <div class="col-3">
+                    <button @onclick="@(()=> ButtonClick(animal))"
+                            type="button" class="btn btn-outline-dark">
+                        <h1>@animal</h1>
+                    </button>
+                </div>
+}
+    </div>
+</div>
+@code{
+    List<string> animalEmoji=new List<string>()
+    { "1","1",
+       "2","2",
+       "3","3",
+       "4","4",
+       "5","5",
+       "6","6",
+       "7","7",
+       "8","8"，
+    };
+   
+    List<string> shuffledAnimals = new List<string>();
+    protected override void OnInitialized()
+    {
+        SetUpGame();
+    }
+    private void SetUpGame()
+    {
+        Random random = new Random();
+        shuffledAnimals = animalEmoji
+            .OrderBy(item => random.Next())
+            .ToList();
+    }
+    string lastAnimalFound=string.Empty;
+    private void ButtonClick(string animal){
+     if (lastAnimalFound == string.Empty){
+        lastAnimalFound = animal;
+     }
+     else if (lastAnimalFound == animal){
+        lastAnimalFound = string.Empty;
+        shuffledAnimals.RemoveAll(a => a == animal);
+     }
+     else{
+        lastAnimalFound = string.Empty;
+     }
+    }
+}

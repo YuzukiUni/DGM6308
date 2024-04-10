@@ -1,0 +1,7 @@
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchingGame\MatchingGame\MatchingGame\obj\Debug\net6.0\MatchingGame.csproj.AssemblyReference.cache
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchingGame\MatchingGame\MatchingGame\obj\Debug\net6.0\MatchingGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchingGame\MatchingGame\MatchingGame\obj\Debug\net6.0\MatchingGame.AssemblyInfoInputs.cache
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchingGame\MatchingGame\MatchingGame\obj\Debug\net6.0\MatchingGame.AssemblyInfo.cs
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchingGame\MatchingGame\MatchingGame\obj\Debug\net6.0\MatchingGame.csproj.CoreCompileInputs.cache
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchingGame\MatchingGame\MatchingGame\obj\Debug\net6.0\MatchingGame.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchingGame\MatchingGame\MatchingGame\obj\Debug\net6.0\MatchingGame.sourcelink.json

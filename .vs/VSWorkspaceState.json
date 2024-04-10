@@ -1,10 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\MatchGame",
-    "\\MatchGame\\MatchGame",
-    "\\MatchGame\\MatchGame\\Pages"
+    ""
   ],
-  "SelectedNode": "\\MatchGame\\MatchGame\\Pages\\Index.razor",
   "PreviewInSolutionExplorer": false
 }
