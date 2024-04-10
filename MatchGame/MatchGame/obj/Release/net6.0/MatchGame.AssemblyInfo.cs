@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("MyFirstConsoleApplication")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("MatchGame")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2abf7cf4bc8f5f0dec1b2ea2e3dd3e9ae0f766c0")]
-[assembly: System.Reflection.AssemblyProductAttribute("MyFirstConsoleApplication")]
-[assembly: System.Reflection.AssemblyTitleAttribute("MyFirstConsoleApplication")]
+[assembly: System.Reflection.AssemblyProductAttribute("MatchGame")]
+[assembly: System.Reflection.AssemblyTitleAttribute("MatchGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // 由 MSBuild WriteCodeFragment 類別產生。

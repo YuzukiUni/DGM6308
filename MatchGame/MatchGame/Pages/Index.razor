@@ -17,7 +17,8 @@
         @foreach(var animal in shuffledAnimals)
 {
                 <div class="col-3">
-                    <button type="button" class="btn btn-outline-dark">
+                    <button @onclick="@(()=> ButtonClick(animal))"
+                            type="button" class="btn btn-outline-dark">
                         <h1>@animal</h1>
                     </button>
                 </div>
@@ -34,8 +35,8 @@
        "6","6",
        "7","7",
        "8","8"
-
-};
+    };
+   
     List<string> shuffledAnimals = new List<string>();
     protected override void OnInitialized()
     {
@@ -47,5 +48,18 @@
         shuffledAnimals = animalEmoji
             .OrderBy(item => random.Next())
             .ToList();
+    }
+    string lastAnimalFound=string.Empty;
+    private void ButtonClick(string animal){
+     if (lastAnimalFound == string.Empty){
+        lastAnimalFound = animal;
+     }
+     else if (lastAnimalFound == animal){
+        lastAnimalFound = string.Empty;
+        shuffledAnimals.RemoveAll(a => a == animal);
+     }
+     else{
+        lastAnimalFound = string.Empty;
+     }
     }
 }
