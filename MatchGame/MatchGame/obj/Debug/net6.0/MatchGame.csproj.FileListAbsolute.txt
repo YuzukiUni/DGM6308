@@ -821,3 +821,10 @@
 C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchGame\MatchGame\obj\Debug\net6.0\MatchGame.dll
 C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchGame\MatchGame\obj\Debug\net6.0\refint\MatchGame.dll
 C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchGame\MatchGame\obj\Debug\net6.0\MatchGame.pdb
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchGame\MatchGame\obj\Debug\net6.0\MatchGame.csproj.AssemblyReference.cache
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchGame\MatchGame\obj\Debug\net6.0\MatchGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchGame\MatchGame\obj\Debug\net6.0\MatchGame.AssemblyInfoInputs.cache
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchGame\MatchGame\obj\Debug\net6.0\MatchGame.AssemblyInfo.cs
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchGame\MatchGame\obj\Debug\net6.0\MatchGame.csproj.CoreCompileInputs.cache
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchGame\MatchGame\obj\Debug\net6.0\MatchGame.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\unila\OneDrive\Documents\GitHub\DGM6308\MatchGame\MatchGame\obj\Debug\net6.0\MatchGame.sourcelink.json
