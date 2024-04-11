@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MatchGame")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76ef84d7e89741efd5dd8a2b9bb66f7a9730ffba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffc1ad92db92983b1e05256fdf879efcdfe73847")]
 [assembly: System.Reflection.AssemblyProductAttribute("MatchGame")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MatchGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
