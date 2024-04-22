@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{08A220ED-C40B-4FA7-B01D-AB43B65FE4A6}|MatchGame.csproj|c:\\users\\unila\\onedrive\\documents\\github\\dgm6308\\matchgame\\matchgame\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{08A220ED-C40B-4FA7-B01D-AB43B65FE4A6}|MatchGame.csproj|solutionrelative:pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08A220ED-C40B-4FA7-B01D-AB43B65FE4A6}|MatchGame.csproj|c:\\users\\unila\\onedrive\\documents\\github\\dgm6308\\matchgame\\matchgame\\matchgame.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{08A220ED-C40B-4FA7-B01D-AB43B65FE4A6}|MatchGame.csproj|solutionrelative:matchgame.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +18,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MatchGame.csproj",
+              "DocumentMoniker": "C:\\Users\\unila\\OneDrive\\Documents\\GitHub\\DGM6308\\MatchGame\\MatchGame\\MatchGame.csproj",
+              "RelativeDocumentMoniker": "MatchGame.csproj",
+              "ToolTip": "C:\\Users\\unila\\OneDrive\\Documents\\GitHub\\DGM6308\\MatchGame\\MatchGame\\MatchGame.csproj",
+              "RelativeToolTip": "MatchGame.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-20T06:10:18.42Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +40,7 @@
               "RelativeDocumentMoniker": "Pages\\Index.razor",
               "ToolTip": "C:\\Users\\unila\\OneDrive\\Documents\\GitHub\\DGM6308\\MatchGame\\MatchGame\\Pages\\Index.razor",
               "RelativeToolTip": "Pages\\Index.razor",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAAADQAAAANAAAA",
+              "ViewState": "AQIAANgAAAAAAAAAAAAAAKoAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-11T16:20:39.036Z",
               "EditorCaption": ""

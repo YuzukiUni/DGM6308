@@ -1,31 +1,90 @@
 ﻿@page "/"
 
+@*Ref:https://learn.microsoft.com/en-us/aspnet/core/blazor/javascript-interoperability/call-javascript-from-dotnet?view=aspnetcore-8.0*@
 @using System.Timers;
+@using Microsoft.JSInterop;
+@inject IJSRuntime JSRuntime;
 
-<PageTitle>Index</PageTitle>
+
+<PageTitle>Assignment 2 by Uni</PageTitle>
 <style>
-    .container{
-        width:480px;
+    .container {
+        width: 720px;
+        z-index:9999;
+        
+    }
+    .row{
+        margin: 5px 5px;
+        border-radius: 5px;
+        font-size:30px;
     }
 
-    button{
-        width:100px;
-        height:100px;
-        font-size:50px;
+    button1 {
+        position:relative;
+        top:30px;
+        left:500px;
+        width: 60px;
+        height: 30px;
+        font-size: 16px;
+        background-color:aliceblue;
+        z-index:1;
     }
-    </style>
+    h2{
+       
+        font-size:24px;
+        padding:10px;
+    }
+    button2 {
+     
+        width: 60px;
+        height: 30px;
+        font-size: 16px;
+        background-color: aliceblue;
+        z-index: 1;
+    }
+
+    .animal-emoji {
+        font-size: 50px;
+    }
+
+    .unique-description{
+        font-size:40px;
+    }
+
+    .fastest-time {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    button1,button2 {
+        min-height: 30px; 
+    }
+
+</style>
+<button1 type="submit" @onclick="SetUpGame"> Restart</button1>
+
+@*Input ID, REF: https://docs.unity3d.com/Packages/com.unity.services.vivox@16.0/api/Unity.Services.Vivox.LoginOptions.PlayerId.html*@
+<form @onsubmit="InputID">
+    <label for="gameID">Please enter a game ID:</label>
+    <input id="gameID" @bind="PlayerID" />
+    <button2 type="submit" @onclick="SetUpGame">Submit</button2>
+</form>
 
 <div class="container">
+
     <div class="row">
         @for (var animalNumber = 0; animalNumber < shuffledAnimals.Count; animalNumber++)
         {
             var animal = shuffledAnimals[animalNumber];
-            var uniqueDescription = $"Button #{animalNumber}";
+            var uniqueDescription ="       ";
             <div class="col-3">
                 <button @onclick="@(() => ButtonClick(animal,uniqueDescription))"
                         type="button" class="btn btn-outline-dark">
-                    <h1>@animal</h1>
+                    <h1 class="animal-emoji" style="min-height: 30px; min-width:60px;">@(memoryPhase ? animal : "")</h1>
+
                 </button>
+
             </div>
         }
     </div>
@@ -35,75 +94,125 @@
     <div class="row">
         <h2>Time: @timeDisplay</h2>
     </div>
+    <div class="fastest-time">
+        <h2>Best Record: @gameRecord</h2>
+        <h2>Best Record Game ID: @bestRecordID</h2>
+    </div>
+
 </div>
-@code{
-    List<string> animalEmoji=new List<string>()
-    {  "1","1",
-       "2","2",
-       "3","3",
-       "4","4",
-       "5","5",
-       "6","6",
-       "7","7",
-       "8","8",
-    };
-   
-    List<string> shuffledAnimals = new List<string>();
+@code {
+        List<string> animalEmoji = new List<string>()
+        {
+        "🐶", "🐶",
+        "🐱", "🐱",
+        "🐭", "🐭",
+        "🐹", "🐹",
+        "🐰", "🐰",
+        "🦊", "🦊",
+        "🐻", "🐻",
+        "🐼", "🐼",
+        };
+
+        List<string> shuffledAnimals = new List<string>()
+        { "","",
+         "","",
+         "","",
+         "","",
+         "","",
+         "","",
+         "","",
+         "","",
+
+        };
     int matchesFound = 0;
     Timer timer;
-    int tenthsOfSecondsElapsed = 0;
+    // Time count in game , use it for round time to hundredth
+    int secondsElapsed = 0;
     string timeDisplay;
+    // set intial Game Record with nothing
+    string gameRecord = "N/A";
+    // Provide 10 second memory time in the game
+    bool memoryPhase = true;
+    string gameID = string.Empty;
+    // Reference: https://docs.unity3d.com/Packages/com.unity.services.vivox@16.0/api/Unity.Services.Vivox.LoginOptions.PlayerId.html
+    public string PlayerID { get; set; }
+    string lastAnimalFound = string.Empty;
+    string lastDescription = string.Empty;
+    string bestRecordID = string.Empty;
 
     protected override void OnInitialized()
     {
-        timer = new Timer(100);
+        timer = new Timer(10);
         timer.Elapsed += Timer_Tick;
-        SetUpGame();
     }
 
-    private void SetUpGame()
+    protected void SetUpGame()
     {
+        // Stop and dispose of the old timer
+        // Reference: https://stackoverflow.com/questions/36737054/using-dispose-to-stop-the-timer-from-being-called
+        if (timer != null)
+        {
+            timer.Stop();
+            timer.Dispose();
+        }
         Random random = new Random();
+        timer = new Timer(10);
+        // Add the new event handler
+        timer.Elapsed += Timer_Tick;
         shuffledAnimals = animalEmoji
             .OrderBy(item => random.Next())
             .ToList();
         matchesFound = 0;
-        tenthsOfSecondsElapsed = 0;
+        secondsElapsed = 0;
+        memoryPhase = true;
+        timer.Start();
     }
 
-    string lastAnimalFound = string.Empty;
-    string lastDescription = string.Empty;
+    //After user input id (or not), game will start
+    private void InputID()
+    {
+        SetUpGame();
+    }
 
     private void ButtonClick(string animal, string animalDescription)
     {
-        if (lastAnimalFound == string.Empty)
+     // Reference: https://www.youtube.com/watch?v=frDKP-A71W0
+
+        if (!memoryPhase) // After Memory time, game start
         {
-            // first animal clicked in game...
-            lastAnimalFound = animal;
-            lastDescription = animalDescription;
-            timer.Start();
-        }
-        else if ((lastAnimalFound == animal) && (animalDescription != lastDescription))
-        { // Match found! Reset for next pair.
-            lastAnimalFound = string.Empty;
-
-            // Replace found animals with empty string to hide them.
-            shuffledAnimals = shuffledAnimals
-                .Select(a => a.Replace(animal, string.Empty))
-                .ToList();
-
-            matchesFound++;
-            if (matchesFound == 8)
+            if (lastAnimalFound == string.Empty)
             {
-                timer.Stop();
-                timeDisplay += " - Play Again?";
-                SetUpGame();
+                // first animal clicked in game...
+                lastAnimalFound = animal;
+                lastDescription = animalDescription;
             }
-        }
-        else
-        {
-            // User selected a pair that don't match. Reset selection.
-            lastAnimalFound = string.Empty;
+            else if ((lastAnimalFound == animal) && (animalDescription == lastDescription))
+            { // Match found! Reset for next pair.
+                lastAnimalFound = string.Empty;
+                shuffledAnimals = shuffledAnimals
+                    .Select(a => a.Replace(animal, string.Empty))
+                    .ToList();
+
+                matchesFound++;
+                if (matchesFound == 8)
+                    {
+                        timer.Stop(); 
+                        float currentGameTime = secondsElapsed / 100F; // Set up the time with hundredth
+                        if (gameRecord == "N/A" || currentGameTime < float.Parse(gameRecord.Replace("s", "")))
+                        {
+                            // Get game record for best time
+                            gameRecord = currentGameTime.ToString("0.00s");
+                            // Get user ID for best time
+                         bestRecordID = PlayerID;
+                    }
+                        timeDisplay += $" - Play Again?";
+                    }
+                }
+
+            else
+            {
+                    lastAnimalFound = string.Empty;
+            }
         }
     }
 
@@ -111,10 +220,20 @@
     {
         InvokeAsync(() =>
         {
-            tenthsOfSecondsElapsed++;
-            timeDisplay = (tenthsOfSecondsElapsed / 10F)
-            .ToString("0.0s");
+            secondsElapsed++;
+            // Reference: https://www.youtube.com/watch?v=frDKP-A71W0
+            if (memoryPhase && secondsElapsed > 1000) // 10 seconds for memory phase
+            {   
+                // Start the game
+                memoryPhase = false;
+                // Reset time to from 10 seconds to 0
+                secondsElapsed = 0;
+            }
+            timeDisplay = (secondsElapsed / 100F)
+            .ToString("0.00s");
             StateHasChanged();
         });
     }
 }
+
+

@@ -1,7 +1,7 @@
 {
   "entryAssembly": "MatchGame",
   "resources": {
-    "hash": "sha256-KkF2AzitRNzi8DCQqHavShD7o1I5x0PQOsHcr9CVHc4=",
+    "hash": "sha256-GByoikpGStUH2L1wadtzAf8wTJ6fBaUI6Wf1+p0m+K4=",
     "runtime": {
       "dotnet.6.0.29.lcv1zqvuu8.js": "sha256-BV1wi9qAMCmpfZ+aXPplngN3cFgig0bFqWhNad3R5Lo=",
       "dotnet.timezones.blat": "sha256-csJ9EjcYXaAQrYK1S5WLY51YBLmp7zcST7wH0IDbvgg=",
@@ -200,10 +200,10 @@
       "mscorlib.dll": "sha256-Dq0ZWn1Dzc/UAPz/NgCNG1XJX8rhBI5c5/jpgKXDF6U=",
       "netstandard.dll": "sha256-7BfApPnkIIxITLLgPNqPbmPRBWu7G/WB0oxp+DOlY0w=",
       "System.Private.CoreLib.dll": "sha256-/IakvE+iRudxlHbw47DUw2QUemsywWIigQHWe/Pxv7U=",
-      "MatchGame.dll": "sha256-7AFJfnBstwXzQIUgdsaHOcQjm1SjJpYLeL8N0TCi3Yg="
+      "MatchGame.dll": "sha256-QMrxHwOJc7ya7+3+6bi0PvfCoWpNGhabtZVEAxliOF0="
     },
     "pdb": {
-      "MatchGame.pdb": "sha256-WiiFq12yNChkrwmzOTE6xvHQMVREj8z4G5iglviuc9A="
+      "MatchGame.pdb": "sha256-HQjpFcsc8PgzIvOmT82lnRyDlfMXSzlYn6p+bG0wm3A="
     },
     "runtimeAssets": {
       "dotnet.wasm": {
