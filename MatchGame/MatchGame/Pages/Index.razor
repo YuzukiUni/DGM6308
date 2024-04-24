@@ -131,7 +131,7 @@
     string timeDisplay;
     // set intial Game Record with nothing
     string gameRecord = "N/A";
-    // Provide 10 second memory time in the game
+    // Provide 20 second memory time in the game
     bool memoryPhase = true;
     string gameID = string.Empty;
     // Reference: https://docs.unity3d.com/Packages/com.unity.services.vivox@16.0/api/Unity.Services.Vivox.LoginOptions.PlayerId.html
@@ -187,17 +187,18 @@
                 lastDescription = animalDescription;
             }
             else if ((lastAnimalFound == animal) && (animalDescription == lastDescription))
-            { // Match found! Reset for next pair.
+            { // Match found 
                 lastAnimalFound = string.Empty;
                 shuffledAnimals = shuffledAnimals
                     .Select(a => a.Replace(animal, string.Empty))
                     .ToList();
-
+               
                 matchesFound++;
                 if (matchesFound == 8)
                     {
                         timer.Stop(); 
-                        float currentGameTime = secondsElapsed / 100F; // Set up the time with hundredth
+                        float currentGameTime = secondsElapsed / 100F; // Set up the time with hundredth and record the final time
+                        // For getting best record  (Less time)
                         if (gameRecord == "N/A" || currentGameTime < float.Parse(gameRecord.Replace("s", "")))
                         {
                             // Get game record for best time
@@ -222,7 +223,7 @@
         {
             secondsElapsed++;
             // Reference: https://www.youtube.com/watch?v=frDKP-A71W0
-            if (memoryPhase && secondsElapsed > 1000) // 10 seconds for memory phase
+            if (memoryPhase && secondsElapsed > 2000) // 20 seconds for memory phase
             {   
                 // Start the game
                 memoryPhase = false;

@@ -1,0 +1,94 @@
+﻿@page "/"
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <h3>How many cards should I pick?</h3>
+
+            </div>
+            <div class="row mt-5">
+                <!-- By binding variable maxCardsToPick, we make it so the user
+                    can never draw more cards than are left in the deck. However,
+                    we have also written code below to support a more typical game
+                    scenario, which is that if the deck runs out of cards, the discard
+                    pile is shuffled and all cards are put back. To see this in action,
+                    just change the max property of the range input tag that's just below
+                    this comment so that it's a reasonable number of cards that a player
+                    might draw for a game (but a big enough number that you don't get bored
+                    testing this -- maybe try 7!) -->
+                <input type="range" class="col-10 form-control-range" min="1" max="@maxCardsToPick" @bind="numberOfCards" />
+                <div class="col-2">@numberOfCards</div>
+            </div>
+            <div class="row mt-5">
+                <button type="button" class="btn btn-primary" @onclick="UpdateCards">Pick some cards</button>
+            </div>
+        </div>
+        <div class="col-4">
+            @if (pickedCards == null)
+            {
+                <button type="button" class="btn btn-primary" @onclick="ShuffleDeck">Shuffle Deck</button>
+            }
+            else
+            {
+                <ul class="list-group">
+                    @foreach (var card in pickedCards)
+                    {
+                        <li class="list-group-item">
+                            <img src="card_assets/@card" />
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    int numberOfCards = 1;
+    int maxCardsToPick = 52;
+    string[] pickedCards = new string[0];
+    void UpdateCards()
+    {
+        maxCardsToPick -= numberOfCards;
+        if (maxCardsToPick >= 1)
+        {
+            pickedCards = CardPicker.PickSomeCards(numberOfCards);
+        }
+        else if (maxCardsToPick == 0) // Deal then reshuffle
+        {
+            pickedCards = CardPicker.PickSomeCards(numberOfCards);
+            CardPicker.BuildDeck();
+            maxCardsToPick = 52;
+        }
+        else // Deal, reshuffle, deal some more
+        {
+            // how many cards we can take now vs after reshuffle
+            int numberOfCardsA = CardPicker.CountCards();
+            int numberOfCardsB = numberOfCards - numberOfCardsA;
+            Console.WriteLine("Picking " + numberOfCardsA + " cards first...");
+            string[] pickedCardsA = CardPicker.PickSomeCards(numberOfCardsA);
+            // remake the deck
+            CardPicker.BuildDeck();
+            foreach (var card in pickedCardsA)
+            {
+                // remove the cards we already picked; like we are shuffling discard pile
+                CardPicker.RemoveCard(card);
+            }
+            Console.WriteLine("Then picking " + numberOfCardsB + " cards...");
+
+            string[] pickedCardsB = CardPicker.PickSomeCards(numberOfCardsB);
+            maxCardsToPick = CardPicker.CountCards();
+            Console.WriteLine("Leaving " + maxCardsToPick + " cards in the deck!");
+        }
+        if (numberOfCards > maxCardsToPick)
+        {
+            numberOfCards = 1; // reset the slider if we'd be over the max
+        }
+    }
+    void ShuffleDeck()
+    {
+        CardPicker.BuildDeck();
+        maxCardsToPick = CardPicker.CountCards();
+    }
+}
