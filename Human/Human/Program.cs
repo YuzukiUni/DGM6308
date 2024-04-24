@@ -15,7 +15,9 @@ namespace Human
             Uni.introduction();
             YuNi.introduction();
             YourName Kanon = new YourName();
-            Kanon.introduction();
+            Kanon.introduction(); //Add Line
+
+            Console.ReadLine();
         }
     }
 }
