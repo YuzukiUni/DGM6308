@@ -204,12 +204,12 @@ namespace BlackJack
                 Console.WriteLine($"Coins: You - {playerCoins}, Computer - {computerCoins}");
 
                 // Win condition
-                if (playerPoints >= 100 || computerCoins <= 0)
+                if (playerPoints >= 100 || computerCoins < 0)
                 {
                     Console.WriteLine("You win the game!");
                     break;
                 }
-                else if (computerPoints >= 100 || playerCoins <= 0)
+                else if (computerPoints >= 100 || playerCoins < 0)
                 {
                     Console.WriteLine("Computer wins the game.");
                     break;
