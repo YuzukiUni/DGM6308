@@ -206,7 +206,7 @@ namespace BlackJack
                 // Win condition
                 if (playerPoints >= 100 || computerCoins <= 0)
                 {
-                    Console.WriteLine(" You win the game!");
+                    Console.WriteLine("You win the game!");
                     break;
                 }
                 else if (computerPoints >= 100 || playerCoins <= 0)
