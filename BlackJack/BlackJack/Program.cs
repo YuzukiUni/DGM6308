@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace BlackJack
 {
     // Game rule reference:https://www.instructables.com/Learn-to-play-two-people-blackjack/
+    /*Other Reference before Start this project:https://blog.csdn.net/weixin_43328198/article/details/85311232
+      https://blog.csdn.net/Czhenya/article/details/123198795?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-123198795-blog-85311232.235^v43^pc_blog_bottom_relevance_base9&spm=1001.2101.3001.4242.2&utm_relevant_index=2
+     */
     internal class Program
     {
         static void Main(string[] args)
@@ -86,7 +89,7 @@ namespace BlackJack
                         break;
                     }
                     // Let player press each button to hand/draw/add bet
-                    Console.Write("Press 'D' to draw another card, 'B' to add to your bet, or 'H' to hold: ");
+                    Console.WriteLine("Press 'D' to draw another card, 'B' to add to your bet, or 'H' to hold: ");
                     var key = Console.ReadKey(true).Key;
 
                     // Invalid key beside D,B,and H
@@ -121,7 +124,7 @@ namespace BlackJack
                     {
                         playerTotal += DrawCard(deck, randomCards, "You");
                         Console.WriteLine("Your total is now " + playerTotal);
-                        // Break if player busted 
+                        // End the round if player busted 
                         if (playerTotal > 50)
                         {
                             Console.WriteLine("You busted. Computer gets the bet.");
@@ -130,9 +133,9 @@ namespace BlackJack
                             computerPoints += 10;
                             break;
                         }
-
                         computerTotal += DrawCard(deck, randomCards, "Computer");
                         Console.WriteLine("The computers's total is now " + computerTotal);
+                        // End the round if computer busted 
                         if (computerTotal > 50)
                         {
                             Console.WriteLine("Computer busted. You get the bet!");
