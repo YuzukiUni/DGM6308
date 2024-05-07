@@ -225,7 +225,7 @@ namespace BlackJack
                 }
                 else if (computerPoints >= 100 || playerCoins < 0)
                 {
-                    Console.WriteLine("Computer wins the game.");
+                    Console.WriteLine("Computer wins the game!");
                     break;
                 }
             }
