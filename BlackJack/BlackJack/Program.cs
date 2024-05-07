@@ -27,6 +27,7 @@ namespace BlackJack
                 // Starting each round, and type the numbers of round at the beginning
                 round++;
                 Console.WriteLine("ROUND " + round);
+                Console.WriteLine("--------------------------------------------");
                 // Set up bet for each round
                 int betLimit;
                 if (round < 3)
@@ -74,10 +75,11 @@ namespace BlackJack
                 // Reference:https://raisanenmarkus.github.io/csharp/part5/1/
                 // Player and computer draw cards
                 playerTotal += DrawCard(deck, randomCards, "You");
-                computerTotal += DrawCard(deck, randomCards, "Computer");         
+                computerTotal += DrawCard(deck, randomCards, "Computer");
+                Console.WriteLine("--------------------------------------------");
                 Console.WriteLine("Your total is " + playerTotal);
                 Console.WriteLine("Computer total is " + computerTotal);
-
+                Console.WriteLine("--------------------------------------------");
 
                 // In game progress, I change some special rules for this game
                 while (playerTotal < 50)
@@ -96,6 +98,7 @@ namespace BlackJack
                     if (key != ConsoleKey.D && key != ConsoleKey.B && key != ConsoleKey.H)
                     {
                         Console.WriteLine("Invalid input. Please try again.");
+                        Console.WriteLine("--------------------------------------------");
                         continue;
                     }
 
@@ -110,6 +113,7 @@ namespace BlackJack
                         {
                             // Reference:https://learn.microsoft.com/en-us/dotnet/api/system.math.min?view=net-8.0
                             Console.WriteLine("Invalid bet. Your additional bet is set to " + Math.Min(betLimit, playerCoins - playerBet));
+                            Console.WriteLine("--------------------------------------------");
                             additionalBet = Math.Min(betLimit, playerCoins - playerBet);
                         }
                         playerBet += additionalBet;
@@ -124,10 +128,12 @@ namespace BlackJack
                     {
                         playerTotal += DrawCard(deck, randomCards, "You");
                         Console.WriteLine("Your total is now " + playerTotal);
+                        Console.WriteLine("--------------------------------------------");
                         // End the round if player busted 
                         if (playerTotal > 50)
                         {
-                            Console.WriteLine("You busted. Computer gets the bet.");
+                            Console.WriteLine("You busted. Computer wins!");
+                            Console.WriteLine("--------------------------------------------");
                             playerCoins -= playerBet;
                             computerCoins += playerBet;
                             computerPoints += 10;
@@ -135,10 +141,12 @@ namespace BlackJack
                         }
                         computerTotal += DrawCard(deck, randomCards, "Computer");
                         Console.WriteLine("The computers's total is now " + computerTotal);
+                        Console.WriteLine("--------------------------------------------");
                         // End the round if computer busted 
                         if (computerTotal > 50)
                         {
-                            Console.WriteLine("Computer busted. You get the bet!");
+                            Console.WriteLine("Computer busted. You wins!");
+                            Console.WriteLine("--------------------------------------------");
                             playerCoins += computerBet;
                             computerCoins -= computerBet;
                             playerPoints += 10;
@@ -149,17 +157,17 @@ namespace BlackJack
                     // Place H to hold the card
                     else if (key == ConsoleKey.H)
                     {
+                  
+                        if (playerTotal < computerTotal)
+                        {
+                            playerTotal += DrawCard(deck, randomCards, "You");
+                        }
+                        // If computer hand is less, it need to draw one more card 
+                        if (computerTotal < playerTotal)
+                        {
+                            computerTotal += DrawCard(deck, randomCards, "Computer");
+                        }
                         break;
-                    }
-
-                    if (playerTotal < computerTotal)
-                    {
-                        playerTotal += DrawCard(deck, randomCards, "You");
-                    }
-                    // If computer hand is less, it need to draw one more card 
-                    if (computerTotal < playerTotal)
-                    {
-                        computerTotal += DrawCard(deck, randomCards, "Computer");
                     }
                 }
 
@@ -168,13 +176,15 @@ namespace BlackJack
                 if (playerTotal > 50)   // Special Rule Player busted (for final result)
                 {
                     Console.WriteLine("You busted. Computer gets the bet.");
+                    Console.WriteLine("--------------------------------------------");
                     playerCoins -= playerBet;
                     computerCoins += playerBet;
                     computerPoints += 10;
                 }
                 else if (computerTotal > 50)
                 {
-                    Console.WriteLine("Computer busted. You get the bet!");
+                    Console.WriteLine("Computer busted. You wins!");
+                    Console.WriteLine("--------------------------------------------");
                     playerCoins += computerBet;
                     computerCoins -= computerBet;
                     playerPoints += 10;
@@ -182,7 +192,8 @@ namespace BlackJack
                 // Player win the round and get coins and scores
                 else if (playerTotal > computerTotal)
                 {
-                    Console.WriteLine("You win this round! You get the bet!");
+                    Console.WriteLine("You win this round! ");
+                    Console.WriteLine("--------------------------------------------");
                     playerCoins += computerBet;
                     computerCoins -= computerBet;
                     playerPoints += 10;
@@ -190,7 +201,8 @@ namespace BlackJack
                     // Computer win the round and get coins and scores
                 else if (playerTotal < computerTotal)
                 {
-                    Console.WriteLine("Computer wins this round! Computer gets the bet.");
+                    Console.WriteLine("Computer wins this round!");
+                    Console.WriteLine("--------------------------------------------");
                     playerCoins -= playerBet;
                     computerCoins += playerBet;
                     computerPoints += 10;
@@ -198,10 +210,12 @@ namespace BlackJack
                 else
                 {
                     Console.WriteLine("It's a draw! No one wins the bet.");
+                    Console.WriteLine("--------------------------------------------");
                 }
                 // Reference:https://blog.csdn.net/weixin_43328198/article/details/85311232
                 Console.WriteLine($"Score: You - {playerPoints}, Computer - {computerPoints}");
                 Console.WriteLine($"Coins: You - {playerCoins}, Computer - {computerCoins}");
+                Console.WriteLine("--------------------------------------------");
 
                 // Win condition
                 if (playerPoints >= 100 || computerCoins < 0)
