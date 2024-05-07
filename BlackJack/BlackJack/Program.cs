@@ -218,9 +218,9 @@ namespace BlackJack
         }
 
         // Reference:https://stackoverflow.com/questions/13038026/randomly-drawing-5-cards-from-a-deck-in-java
-        static int DrawCard(List<string> deck, Random rand, string player)
+        static int DrawCard(List<string> deck, Random randomCards, string player)
         {
-            string card = deck[rand.Next(deck.Count)];
+            string card = deck[randomCards.Next(deck.Count)];
 
             Console.WriteLine(player + " drew a " + card);
             // Ace should be a value of 11
